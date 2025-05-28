@@ -6,7 +6,7 @@
 ---
 
 ## 项目简介
-本项目以"Recent techniques in cryptography and its application"为主题，模拟并分析了蓝牙车锁场景下的安全通信流程。采用现代密码学技术（ECDH 密钥交换、AES-GCM 加密、防重放机制），用 Python 纯代码实现了正常通信、中间人攻击、重放攻击等流程，便于教学、实验和论文撰写。
+本项目以"Recent techniques in cryptography and its application"为主题，模拟并分析了蓝牙车锁场景下的安全通信流程。采用现代密码学技术（ECDH 密钥交换、AES-GCM 加密、防重放机制），用 Python 纯代码实现了正常通信、中间人攻击、重放攻击等流程。
 
 ---
 
