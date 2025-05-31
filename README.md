@@ -72,19 +72,6 @@ Running `python simulate_normal.py` will show detailed logs, including public ke
 
 ---
 
-## Team Members & Contributions
-Please fill in the following table in your final report and this README:
-
-| Name      | Student ID | Main Contribution                        |
-|-----------|------------|------------------------------------------|
-| Leader A  | xxxxxxxx   | Project coordination, report writing, code review |
-| Member B  | xxxxxxxx   | ECDH/AES-GCM implementation, performance testing |
-| Member C  | xxxxxxxx   | Attack simulation, log optimization, data analysis |
-| Member D  | xxxxxxxx   | Documentation, references, formatting    |
-| ...       | ...        | ...                                      |
-
----
-
 ## References
 Please add IEEE-formatted references in your final report and this README.
 
