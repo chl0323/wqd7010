@@ -6,7 +6,7 @@ import markdown2
 import pdfkit
 from datetime import datetime
 
-# 配置日志
+# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
@@ -24,59 +24,59 @@ def generate_markdown_report(performance_data, attack_results):
     """Generate a complete Markdown format report"""
     current_date = datetime.now().strftime("%Y-%m-%d")
     
-    report = f"""# 基于 ECDH 和 AES-GCM 的蓝牙车锁安全通信系统设计与实现
+    report = f"""# Design and Implementation of a Secure BLE Vehicle Lock Communication System Based on ECDH and AES-GCM
 
 ## Abstract
-本文设计并实现了一个基于 ECDH 和 AES-GCM 的蓝牙车锁安全通信系统。该系统通过 ECDH 密钥交换协议实现安全的密钥协商，使用 AES-GCM 进行命令加密，并实现了防重放攻击机制。实验结果表明，该系统能够有效保护蓝牙车锁通信安全，抵御常见的中间人攻击和重放攻击。
+This project designs and implements a secure BLE vehicle lock communication system based on ECDH and AES-GCM. The system achieves secure key agreement through the ECDH key exchange protocol, uses AES-GCM for command encryption, and implements an anti-replay attack mechanism. Experimental results show that the system can effectively protect BLE vehicle lock communication security and resist common man-in-the-middle and replay attacks.
 
 ## 1. Introduction
 ### 1.1 Background
-随着物联网技术的发展，蓝牙车锁系统在汽车安全领域得到广泛应用。然而，蓝牙通信的安全性面临着诸多挑战，如中间人攻击、重放攻击等。因此，设计一个安全可靠的蓝牙车锁通信系统具有重要意义。
+With the development of IoT technology, BLE vehicle lock systems are widely used in automotive security. However, the security of BLE communication faces many challenges, such as man-in-the-middle attacks and replay attacks. Therefore, designing a secure and reliable BLE vehicle lock communication system is of great significance.
 
 ### 1.2 Project Scope
-本项目主要研究以下内容：
-- ECDH 密钥交换协议在蓝牙车锁中的应用
-- AES-GCM 加密算法在命令传输中的应用
-- 防重放攻击机制的设计与实现
-- 系统性能评估与安全性分析
+This project mainly studies the following aspects:
+- Application of ECDH key exchange protocol in BLE vehicle locks
+- Application of AES-GCM encryption algorithm in command transmission
+- Design and implementation of anti-replay attack mechanism
+- System performance evaluation and security analysis
 
 ### 1.3 Limitations
-- 仅支持基本的开锁命令
-- 未实现用户认证机制
-- 未考虑物理安全防护
+- Only supports basic unlock command
+- No user authentication mechanism implemented
+- Physical security protection not considered
 
 ## 2. Literature Review
-### 2.1 ECDH 密钥交换
-ECDH（Elliptic Curve Diffie-Hellman）是一种基于椭圆曲线的密钥交换协议，具有计算效率高、密钥长度短等优点。在蓝牙通信中，ECDH 被广泛应用于密钥协商过程，为后续的加密通信提供安全基础。
+### 2.1 ECDH Key Exchange
+ECDH (Elliptic Curve Diffie-Hellman) is a key exchange protocol based on elliptic curves, featuring high computational efficiency and short key length. In BLE communication, ECDH is widely used in the key agreement process, providing a secure foundation for subsequent encrypted communication.
 
-### 2.2 AES-GCM 加密
-AES-GCM（Advanced Encryption Standard - Galois/Counter Mode）是一种认证加密算法，提供机密性和完整性保护。其特点包括：
-- 高安全性：提供认证和加密双重保护
-- 高效率：支持并行处理
-- 低延迟：适合实时通信场景
+### 2.2 AES-GCM Encryption
+AES-GCM (Advanced Encryption Standard - Galois/Counter Mode) is an authenticated encryption algorithm that provides both confidentiality and integrity protection. Its features include:
+- High security: provides both authentication and encryption
+- High efficiency: supports parallel processing
+- Low latency: suitable for real-time communication scenarios
 
-### 2.3 蓝牙安全研究现状
-近年来，蓝牙安全研究主要集中在以下几个方面：
-1. 密钥管理：研究更安全的密钥生成和更新机制
-2. 认证机制：开发更可靠的设备认证方案
-3. 攻击防护：研究针对各种攻击的防御措施
+### 2.3 BLE Security Research Status
+In recent years, BLE security research has mainly focused on the following aspects:
+1. Key management: research on more secure key generation and update mechanisms
+2. Authentication mechanisms: development of more reliable device authentication schemes
+3. Attack protection: research on defense measures against various attacks
 
 ## 3. System Design and Implementation
-### 3.1 系统架构
-系统由以下组件构成：
-- BLE 服务器（车锁端）：负责接收和处理加密命令
-- BLE 客户端（手机端）：负责生成和发送加密命令
-- 攻击演示模块：模拟各类攻击场景
-- 性能分析模块：收集和展示系统性能数据
+### 3.1 System Architecture
+The system consists of the following components:
+- BLE server (vehicle lock side): responsible for receiving and processing encrypted commands
+- BLE client (mobile side): responsible for generating and sending encrypted commands
+- Attack demonstration module: simulates various attack scenarios
+- Performance analysis module: collects and displays system performance data
 
-### 3.2 关键算法实现
-#### 3.2.1 ECDH 密钥交换
+### 3.2 Key Algorithm Implementation
+#### 3.2.1 ECDH Key Exchange
 ```python
 def derive_shared_secret(private_key, peer_public_key):
     return private_key.exchange(ec.ECDH(), peer_public_key)
 ```
 
-#### 3.2.2 AES-GCM 加密
+#### 3.2.2 AES-GCM Encryption
 ```python
 def encrypt_command(aes_key, plaintext):
     aesgcm = AESGCM(aes_key)
@@ -85,7 +85,7 @@ def encrypt_command(aes_key, plaintext):
     return nonce, ciphertext
 ```
 
-### 3.3 防重放攻击机制
+### 3.3 Anti-Replay Attack Mechanism
 ```python
 def is_nonce_used(nonce):
     if nonce in used_nonces:
@@ -95,29 +95,29 @@ def is_nonce_used(nonce):
 ```
 
 ## 4. Results
-### 4.1 性能测试
-- 内存占用: {performance_data['memory_mb']:.2f} MB
-- CPU 使用率: {performance_data['cpu_percent']}%
+### 4.1 Performance Test
+- Memory usage: {performance_data['memory_mb']:.2f} MB
+- CPU usage: {performance_data['cpu_percent']}%
 
-### 4.2 安全性测试
-#### 4.2.1 中间人攻击测试
-- 攻击成功率: {attack_results.get('mitm_success_rate', 'N/A')}%
-- 平均攻击时间: {attack_results.get('mitm_avg_time', 'N/A')}ms
+### 4.2 Security Test
+#### 4.2.1 Man-in-the-Middle Attack Test
+- Attack success rate: {attack_results.get('mitm_success_rate', 'N/A')}%
+- Average attack time: {attack_results.get('mitm_avg_time', 'N/A')}ms
 
-#### 4.2.2 重放攻击测试
-- 攻击检测率: {attack_results.get('replay_detection_rate', 'N/A')}%
-- 平均检测时间: {attack_results.get('replay_avg_time', 'N/A')}ms
+#### 4.2.2 Replay Attack Test
+- Attack detection rate: {attack_results.get('replay_detection_rate', 'N/A')}%
+- Average detection time: {attack_results.get('replay_avg_time', 'N/A')}ms
 
 ## 5. Conclusions
-1. 系统成功实现了基于 ECDH 和 AES-GCM 的安全通信
-2. 防重放攻击机制有效抵御了重放攻击
-3. 系统性能满足实际应用需求
+1. The system successfully implements secure communication based on ECDH and AES-GCM
+2. The anti-replay attack mechanism effectively resists replay attacks
+3. The system performance meets practical application requirements
 
 ## 6. Recommendations
-1. 增加用户认证机制
-2. 实现物理安全防护
-3. 优化密钥更新机制
-4. 扩展支持更多命令类型
+1. Add user authentication mechanism
+2. Implement physical security protection
+3. Optimize key update mechanism
+4. Extend support for more command types
 
 ## 7. References
 [1] NIST Special Publication 800-38D, "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
@@ -127,26 +127,26 @@ def is_nonce_used(nonce):
 [5] Dworkin, M. (2007). "Recommendation for Block Cipher Modes of Operation: Galois/Counter Mode (GCM) and GMAC"
 
 ## 8. Appendices
-### Appendix A: 完整代码实现
-项目包含以下主要代码文件：
-1. ble_client.py - 客户端实现
-2. ble_server.py - 服务器实现
-3. attacks.py - 攻击演示
-4. report_gen.py - 报告生成
+### Appendix A: Complete Code Implementation
+The project includes the following main code files:
+1. ble_client.py - Client implementation
+2. ble_server.py - Server implementation
+3. attacks.py - Attack demonstration
+4. report_gen.py - Report generation
 
-### Appendix B: 测试数据
-详细的测试数据包括：
-1. 性能测试结果
-2. 安全性测试结果
-3. 攻击演示结果
+### Appendix B: Test Data
+Detailed test data includes:
+1. Performance test results
+2. Security test results
+3. Attack demonstration results
 
 ## 9. Team Members and Contributions
-1. [成员1姓名] - 系统架构设计、ECDH 实现
-2. [成员2姓名] - AES-GCM 实现、性能测试
-3. [成员3姓名] - 攻击演示模块、安全性测试
-4. [成员4姓名] - 报告撰写、文档整理
+1. [Member 1 Name] - System architecture design, ECDH implementation
+2. [Member 2 Name] - AES-GCM implementation, performance testing
+3. [Member 3 Name] - Attack demonstration module, security testing
+4. [Member 4 Name] - Report writing, documentation
 
-*报告生成日期: {current_date}*
+*Report generation date: {current_date}*
 """
     return report
 
